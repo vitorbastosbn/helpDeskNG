@@ -1,0 +1,40 @@
+<div [ngClass]="classCss" role="alert" *ngIf="mensagem">
+  <strong> {{ mensagem }} </strong>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="box">
+      <div class="box-header with-border">
+        <h3 class="box-title">Lista de usuários</h3>
+      </div>
+      <!-- /.box-header -->
+      <div class="box-body">
+        <table class="table table-bordered">
+          <tr>
+            <th>Email</th>
+            <th>Perfil</th>
+            <th>Ações</th>
+          </tr>
+          <tr *ngFor="let filtro of filtro.registros" >
+            <td style="width: 60%">{{ filtro.email }}</td>
+            <td style="width: 25%">{{ filtro.perfil }}</td>
+            <td style="width: 15%">
+              <button class="btn btn-primary" (click)="alterar(filtro.id)">Editar</button>
+              <button class="btn btn-danger" (click)="apagar(filtro.id)">Excluir</button>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="box-footer clearfix">
+        <ul class="pagination pagination-sm no-margin pull-right">
+          <li><a href="" (click)="setPaginaAnterior($event)">&laquo;</a></li>
+          <li *ngFor="let p of filtro.paginas; let i = index">
+            <a href="" [ngClass]="{'pagination-focus' : i == pagina}" (click)="setPagina(i, $event)">{{ i + 1 }}</a>
+          </li>
+          <li><a href="" (click)="setProximaPagina($event)">&raquo;</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
