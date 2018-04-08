@@ -2,7 +2,7 @@
   <!-- sidebar: style can be found in sidebar.less -->
   <section class="sidebar">
     <ul class="sidebar-menu" data-widget="tree">
-      <li class="treeview">
+      <li class="treeview" *ngIf="compartilhado.usuario.perfil == 'ADMIN'">
         <a href="#">
           <i class="fa fa-users"></i>
           <span>Usuários</span>
@@ -31,11 +31,11 @@
         </a>
         <ul class="treeview-menu">
           <li>
-            <a href="pages/forms/general.html">
+            <a [routerLink]="['ticket/pesquisar']">
               <i class="fa fa-circle-o"></i> Listar</a>
           </li>
           <li>
-            <a href="pages/forms/advanced.html">
+            <a [routerLink]="['ticket/cadastrar']">
               <i class="fa fa-circle-o"></i> Novo Ticket</a>
           </li>
         </ul>

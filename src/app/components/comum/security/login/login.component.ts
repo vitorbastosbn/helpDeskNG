@@ -9,8 +9,7 @@ import { AbstractComponent } from '../../abstract/abstract.component';
 
 @Component({
   selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  templateUrl: './login.component.html'
 })
 export class LoginComponent extends AbstractComponent implements OnInit {
 
@@ -30,7 +29,6 @@ export class LoginComponent extends AbstractComponent implements OnInit {
 
   login() {
     this.limparMensagens();
-    console.log(this.usuario);
     this.usuarioService.login(this.usuario).subscribe((usuarioAutenticacao: UsuarioAtual) => {
       this.compatilhado.token = usuarioAutenticacao.token;
       this.compatilhado.usuario = usuarioAutenticacao.usuario;
@@ -41,7 +39,11 @@ export class LoginComponent extends AbstractComponent implements OnInit {
       this.compatilhado.token = null;
       this.compatilhado.usuario = null;
       this.compatilhado.showTemplate.emit(false);
-      super.exibirMensagemDeErro(error['erro']['errors'][0]);
+      if (error['error']['errors'] !== undefined) {
+        super.exibirMensagemDeErro('Falha ao se comunicar com o servidor');
+      } else {
+        super.exibirMensagemDeErro(error['error']['errors'][0]);
+      }
     });
   }
 
@@ -50,14 +52,6 @@ export class LoginComponent extends AbstractComponent implements OnInit {
     this.usuario = new Usuario('', '', '', '');
     window.location.href = '/login';
     window.location.reload();
-  }
-
-  getFromGroupClass(isInvalid: boolean, isDirty): {} {
-    return {
-      'form-group': true.valueOf,
-      'has-error': isInvalid && isDirty,
-      'has-success': !isInvalid && isDirty
-    };
   }
 
 }

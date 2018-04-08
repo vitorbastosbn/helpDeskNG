@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http/src/client';
+import { HttpClient } from '@angular/common/http';
 
 import { HELP_DESK_API } from './helpdesk.api';
 import { Ticket } from '../model/ticket.model';
@@ -18,7 +18,7 @@ export class TicketService {
     }
   }
 
-  perquiserTodos(pagina: number, registrosPorPagina: number) {
+  pesquisarTodos(pagina: number, registrosPorPagina: number) {
     return this.http.get(`${HELP_DESK_API}/api/ticket/${pagina}/${registrosPorPagina}`);
   }
 

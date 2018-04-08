@@ -38,4 +38,12 @@ export class AbstractComponent {
     this.classCss['alert-' + tipo] = true;
   }
 
+  getFromGroupClass(isInvalid: boolean, isDirty): {} {
+    return {
+      'form-group': true.valueOf,
+      'has-error': isInvalid && isDirty,
+      'has-success': !isInvalid && isDirty
+    };
+  }
+
 }

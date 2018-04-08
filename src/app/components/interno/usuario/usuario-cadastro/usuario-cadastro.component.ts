@@ -46,7 +46,6 @@ export class UsuarioCadastroComponent extends AbstractComponent implements OnIni
   }
 
   cadastrar() {
-    console.log(this.usuario);
     this.usuarioService.criarOuAtualizar(this.usuario).subscribe((responseApi: ResponseApi) => {
       this.usuario = new Usuario('', '', '', '');
       const usuarioRet: Usuario = responseApi.data;
@@ -55,14 +54,6 @@ export class UsuarioCadastroComponent extends AbstractComponent implements OnIni
     }, error => {
       super.exibirMensagemDeErro(error['error']['errors'][0]);
     });
-  }
-
-  getFromGroupClass(isInvalid: boolean, isDirty): {} {
-    return {
-      'form-group': true.valueOf,
-      'has-error': isInvalid && isDirty,
-      'has-success': !isInvalid && isDirty
-    };
   }
 
 }

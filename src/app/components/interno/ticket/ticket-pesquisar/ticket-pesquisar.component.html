@@ -1,0 +1,101 @@
+<div [ngClass]="classCss" role="alert" *ngIf="mensagem">
+  <strong> {{ mensagem }} </strong>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <div class="box">
+
+
+      <div class="box-header with-border">
+        <h3 class="box-title">Lista de usuários</h3>
+      </div>
+      <div class="box-body">
+        <div class="form-group" *ngIf="compartilhado.usuario.perfil == 'TECNICO'">
+          <div class="checkbox">
+            <label>
+              <input id="checkBoxDesignadoParaMim" type="checkbox" [(ngModel)]="designadoParaMim" name="designadoParaMim">
+              <b>Designado para mim</b>>
+            </label>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="inputProtocolo" class="col-sm-2 control-label">Protocolo</label>
+          <div class="col-sm-10">
+            <input id="inputProtocolo" type="text" class="form-control" [(ngModel)]="ticket.protocolo" name="protocolo">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="inputStatus" class="col-sm-2 control-label">Status</label>
+          <div class="col-sm-10">
+            <select id="inputStatus" class="form-control" [(ngModel)]="ticket.status" name="status">
+              <option>NOVO</option>
+              <option>RESOLVIDO</option>
+              <option>APROVADO</option>
+              <option>REPROVADO</option>
+              <option>DESIGNADO</option>
+              <option>FECHADO</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="inputPrioridade" class="col-sm-2 control-label">Prioridade</label>
+          <div class="col-sm-10">
+            <select id="inputPrioridade" class="form-control" [(ngModel)]="ticket.prioridade" name="prioridade">
+              <option>ALTA</option>
+              <option>NORMAL</option>
+              <option>BAIXA</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="inputTitulo" class="col-sm-2 control-label">Titulo</label>
+          <div class="col-sm-10">
+            <input id="inputTitulo" type="text" class="form-control" [(ngModel)]="ticket.titulo" name="titulo">
+          </div>
+        </div>
+      </div>
+      <div class="box-footer">
+        <button class="btn btn-info pull-right" (click)="pesquisarPorFiltro()">Pesquisar</button>
+        <button class="btn btn-info pull-right" (click)="limpar()">Limpar</button>
+      </div>
+      <!-- /.box-header -->
+      <div class="box-body">
+        <table class="table table-bordered">
+          <tr>
+            <th>Protocolo</th>
+            <th>Titulo</th>
+            <th>Prioridade</th>
+            <th>Status</th>
+            <th>Usuario Designado</th>
+            <th>Ações</th>
+          </tr>
+          <tr *ngFor="let filtro of filtro.registros">
+            <td>{{ filtro.protocolo }}</td>
+            <td>{{ filtro.titulo }}</td>
+            <td>{{ filtro.prioridade }}</td>
+            <td>{{ filtro.status }}</td>
+            <td>{{ filtro.usuario.email }}</td>
+            <td>
+              <button *ngIf="compartilhado.usuario.perfil == 'CLIENTE'" class="btn btn-primary" (click)="alterar(filtro.id)">Alterar</button>
+              <button *ngIf="compartilhado.usuario.perfil == 'CLIENTE'" class="btn btn-danger" (click)="excluir(filtro.id)">Excluir</button>
+              <button class="btn btn-success" (click)="detalhar(filtro.id)">Detalhar</button>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="box-footer clearfix">
+        <ul class="pagination pagination-sm no-margin pull-right">
+          <li>
+            <a href="" (click)="setPaginaAnterior($event)">&laquo;</a>
+          </li>
+          <li *ngFor="let p of filtro.paginas; let i = index">
+            <a href="" [ngClass]="{'pagination-focus' : i == pagina}" (click)="setPagina(i, $event)">{{ i + 1 }}</a>
+          </li>
+          <li>
+            <a href="" (click)="setProximaPagina($event)">&raquo;</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
