@@ -55,6 +55,8 @@ export class UsuarioCadastroComponent extends AbstractComponent implements OnIni
       } else {
         this.exibirMensagemDeErro(error['error']['errors'][0]);
       }
+
+      console.log(error);
     });
   }
 
