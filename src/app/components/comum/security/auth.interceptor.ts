@@ -24,7 +24,7 @@ export class AuthInterceptor implements HttpInterceptor {
         if (this.compartilhado.isUsuarioLogado()) {
             authResquest = req.clone({
                 setHeaders: {
-                    'Authorization': this.compartilhado.token
+                    'Authorization': localStorage.getItem('token') !== null ? localStorage.getItem('token').toString() : ''
                 }
             });
             return next.handle(authResquest);

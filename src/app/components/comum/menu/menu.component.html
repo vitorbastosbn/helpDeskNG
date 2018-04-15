@@ -2,7 +2,7 @@
   <!-- sidebar: style can be found in sidebar.less -->
   <section class="sidebar">
     <ul class="sidebar-menu" data-widget="tree">
-      <li class="treeview" *ngIf="compartilhado.usuario.perfil == 'ADMIN'">
+      <li class="treeview" *ngIf="compartilhado.usuario.perfil === 'ROLE_ADMIN'">
         <a href="#">
           <i class="fa fa-users"></i>
           <span>Usuários</span>
@@ -21,7 +21,7 @@
           </li>
         </ul>
       </li>
-      <li class="treeview">
+      <li class="treeview" *ngIf="compartilhado.usuario.perfil !== 'ROLE_ADMIN'">
         <a href="#">
           <i class="fa fa-file-o"></i>
           <span>Tickets</span>
@@ -35,7 +35,7 @@
               <i class="fa fa-circle-o"></i> Listar</a>
           </li>
           <li>
-            <a [routerLink]="['ticket/cadastrar']">
+            <a [routerLink]="['ticket/cadastrar']" *ngIf="compartilhado.usuario.perfil == 'ROLE_CLIENTE'">
               <i class="fa fa-circle-o"></i> Novo Ticket</a>
           </li>
         </ul>

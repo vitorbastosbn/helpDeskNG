@@ -22,10 +22,8 @@ export class UsuarioCadastroComponent extends AbstractComponent implements OnIni
   constructor(
     private usuarioService: UsuarioService,
     private route: ActivatedRoute,
-    private compartilhado: CompartilhadoService
   ) {
-    super();
-    this.compartilhado = CompartilhadoService.getInstance();
+    super(CompartilhadoService.getInstance());
   }
 
   ngOnInit() {
@@ -50,9 +48,13 @@ export class UsuarioCadastroComponent extends AbstractComponent implements OnIni
       this.usuario = new Usuario('', '', '', '');
       const usuarioRet: Usuario = responseApi.data;
       this.form.resetForm();
-      super.exibirMensagemDeSucesso(AbstractComponent.OPERACAO_REALIZADA_COM_SUCESSO);
+      this.exibirMensagemDeSucesso(AbstractComponent.OPERACAO_REALIZADA_COM_SUCESSO);
     }, error => {
-      super.exibirMensagemDeErro(error['error']['errors'][0]);
+      if (error['error']['errors'] === undefined) {
+        this.exibirMensagemDeErro(error['error']['message']);
+      } else {
+        this.exibirMensagemDeErro(error['error']['errors'][0]);
+      }
     });
   }
 

@@ -11,6 +11,6 @@ export class Ticket {
         public usuario: Usuario,
         public usuarioDesignado: Usuario,
         public data: string,
-        public Alteracoes: Array<string>,
+        public alteracoes: Array<string>,
     ) {}
 }

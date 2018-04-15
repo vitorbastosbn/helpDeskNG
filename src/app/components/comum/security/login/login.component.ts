@@ -20,7 +20,7 @@ export class LoginComponent extends AbstractComponent implements OnInit {
     private router: Router,
     private compatilhado: CompartilhadoService
   ) {
-    super();
+    super(CompartilhadoService.getInstance());
     this.compatilhado = CompartilhadoService.getInstance();
   }
 
@@ -30,16 +30,15 @@ export class LoginComponent extends AbstractComponent implements OnInit {
   login() {
     this.limparMensagens();
     this.usuarioService.login(this.usuario).subscribe((usuarioAutenticacao: UsuarioAtual) => {
-      this.compatilhado.token = usuarioAutenticacao.token;
-      this.compatilhado.usuario = usuarioAutenticacao.usuario;
-      this.compatilhado.usuario.perfil = this.compatilhado.usuario.perfil.substring(5);
+      localStorage.setItem('token', usuarioAutenticacao.token);
+      localStorage.setItem('usuario', usuarioAutenticacao.usuario.email);
+      localStorage.setItem('perfil', usuarioAutenticacao.usuario.perfil);
       this.compatilhado.showTemplate.emit(true);
       this.router.navigate(['/']);
     }, error => {
-      this.compatilhado.token = null;
-      this.compatilhado.usuario = null;
+      localStorage.clear();
       this.compatilhado.showTemplate.emit(false);
-      if (error['error']['errors'] !== undefined) {
+      if (error['error']['errors'] === undefined) {
         super.exibirMensagemDeErro('Falha ao se comunicar com o servidor');
       } else {
         super.exibirMensagemDeErro(error['error']['errors'][0]);
@@ -50,8 +49,7 @@ export class LoginComponent extends AbstractComponent implements OnInit {
   cancelarLogin() {
     this.mensagem = null;
     this.usuario = new Usuario('', '', '', '');
-    window.location.href = '/login';
-    window.location.reload();
+    this.router.navigate(['/login']);
   }
 
 }

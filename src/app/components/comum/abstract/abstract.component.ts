@@ -1,3 +1,4 @@
+import { CompartilhadoService } from './../../../services/compartilhado.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -12,7 +13,15 @@ export class AbstractComponent {
   mensagem: string;
   classCss = {};
 
-  constructor() {}
+  constructor(
+    private compartilhado: CompartilhadoService
+  ) {
+    this.compartilhado = CompartilhadoService.getInstance();
+
+    if (localStorage.getItem('token')) {
+      this.compartilhado.showTemplate.emit(true);
+    }
+  }
 
   limparMensagens() {
     this.mensagem = null;
@@ -33,9 +42,12 @@ export class AbstractComponent {
   private construirClasses(tipo: string, text: string) {
     this.mensagem = text;
     this.classCss = {
-      'alert' : true
+      'alert': true
     };
     this.classCss['alert-' + tipo] = true;
+    setTimeout(() => {
+      this.mensagem = undefined;
+    }, 3000);
   }
 
   getFromGroupClass(isInvalid: boolean, isDirty): {} {

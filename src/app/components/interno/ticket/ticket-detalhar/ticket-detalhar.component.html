@@ -1,0 +1,71 @@
+<div class="col-md-10">
+  <div class="box box-info">
+    <div class="box-header with-border">
+      <h3>Detalhe do Ticket</h3>
+    </div>
+    <form class="form-horizontal">
+      <div [ngClass]="classCss" role="alert" *ngIf="mensagem">
+        <strong> {{ mensagem }} </strong>
+      </div>
+      <div class="box-body">
+        <ul class="list-group list-group-unbordered">
+          <li class="list-group-item">
+            <b>Protocolo: </b>
+            <span>{{ ticket.protocolo }}</span>
+            <span class="pull-right">
+              <b>Titulo: </b> {{ ticket.titulo }}</span>
+          </li>
+          <li class="list-group-item">
+            <b>Prioridade: </b>
+            <span>{{ ticket.prioridade }}</span>
+            <span class="pull-right">
+              <b>Criado por: </b> {{ ticket?.usuario?.email }}</span>
+          </li>
+          <li class="list-group-item">
+            <b>Status: </b>
+            <span>{{ ticket.status }}</span>
+            <span class="pull-right">
+              <b>Designado para: </b> {{ ticket?.usuarioDesignado?.email }}</span>
+          </li>
+          <li class="list-group-item">
+            <b>Data: </b>
+            <span>{{ ticket.data | date:'dd/MM/yyyy' }}</span>
+            <span class="pull-right">
+              <b>Descrição: </b> {{ ticket.descricao }}</span>
+          </li>
+          <li class="list-group-item">
+            <span>
+              <img [src]="ticket.imagem" width="450px" height="370px">
+            </span>
+            <span class="pull-right">
+              <table class="table table-bordered">
+                <tr>
+                  <td>Usuario Alterado</td>
+                  <td>Data Alteração de Status</td>
+                  <td>Status</td>
+                </tr>
+                <tr *ngFor="let alteracao of ticket.alteracoes">
+                  <td>{{ alteracao?.usuarioRespAlteracao?.email }}</td>
+                  <td>{{ alteracao?.dataAlteracaoStatus | date: 'dd/MM/yyyy HH:mm:ss' }}</td>
+                  <td>{{ alteracao?.status | json }}</td>
+                </tr>
+              </table>
+            </span>
+          </li>
+        </ul>
+      </div>
+      <div class="box-footer">
+        <button *ngIf="compartilhado.usuario.perfil == 'ROLE_TECNICO' && ticket.status == 'NOVO'" (click)="alterarStatus('DESIGNADO')"
+          class="btn btn-primary">Aceitar</button>
+        <button *ngIf="compartilhado.usuario.perfil == 'ROLE_TECNICO' && (ticket.status == 'DESIGNADO' || ticket.status == 'REPROVADO')" (click)="alterarStatus('RESOLVIDO')"
+          class="btn btn-primary">Resolvido</button>
+        <button *ngIf="compartilhado.usuario.perfil == 'ROLE_CLIENTE' && ticket.status == 'RESOLVIDO'" (click)="alterarStatus('APROVADO')"
+          class="btn btn-primary">Aprovado</button>
+        <button *ngIf="compartilhado.usuario.perfil == 'ROLE_CLIENTE' && ticket.status == 'RESOLVIDO'" (click)="alterarStatus('REPROVADO')"
+          class="btn btn-primary">Reprovado</button>
+        <button *ngIf="compartilhado.usuario.perfil == 'ROLE_TECNICO' && ticket.status == 'APROVADO'" (click)="alterarStatus('FECHADO')"
+          class="btn btn-primary">Fechado</button>
+      </div>
+    </form>
+  </div>
+</div>

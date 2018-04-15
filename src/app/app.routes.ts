@@ -8,6 +8,7 @@ import { LoginComponent } from './components/comum/security/login/login.componen
 import { HomeComponent } from './components/comum/home/home.component';
 import { AuthGuard } from './components/comum/security/auth.guard';
 import { TicketPesquisarComponent } from './components/interno/ticket/ticket-pesquisar/ticket-pesquisar.component';
+import { TicketDetalharComponent } from './components/interno/ticket/ticket-detalhar/ticket-detalhar.component';
 
 export const ROUTES: Routes = [
     { path : '', component: HomeComponent, canActivate: [AuthGuard]},
@@ -17,7 +18,8 @@ export const ROUTES: Routes = [
     { path : 'usuario/pesquisar', component: UsuarioPesquisarComponent, canActivate: [AuthGuard]},
     { path : 'ticket/cadastrar', component: TicketCadastrarComponent, canActivate: [AuthGuard]},
     { path : 'ticket/pesquisar', component: TicketPesquisarComponent, canActivate: [AuthGuard]},
-    { path : 'ticket/cadastrar/:id', component: TicketCadastrarComponent, canActivate: [AuthGuard]}
+    { path : 'ticket/cadastrar/:id', component: TicketCadastrarComponent, canActivate: [AuthGuard]},
+    { path : 'ticket/detalhar/:id', component: TicketDetalharComponent, canActivate: [AuthGuard]}
 ];
 
 export const routes: ModuleWithProviders = RouterModule.forRoot(ROUTES);

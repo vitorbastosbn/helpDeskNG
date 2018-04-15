@@ -20,12 +20,10 @@ export class TicketCadastrarComponent extends AbstractComponent implements OnIni
   ticket = new Ticket('', 0, '', '', '', '', null, null, '', null);
 
   constructor(
-    private compartilhado: CompartilhadoService,
     private ticketService: TicketService,
     private route: ActivatedRoute
   ) {
-    super();
-    this.compartilhado = CompartilhadoService.getInstance();
+    super(CompartilhadoService.getInstance());
   }
 
   ngOnInit() {
@@ -39,7 +37,7 @@ export class TicketCadastrarComponent extends AbstractComponent implements OnIni
     this.ticketService.pesquisarPorId(id).subscribe((responseApi: ResponseApi) => {
       this.ticket = responseApi.data;
     }, erro => {
-      super.exibirMensagemDeAlerta(AbstractComponent.NENHUM_REGISTRO_ENCONTRADO);
+      this.exibirMensagemDeAlerta(AbstractComponent.NENHUM_REGISTRO_ENCONTRADO);
     });
   }
 
@@ -48,19 +46,19 @@ export class TicketCadastrarComponent extends AbstractComponent implements OnIni
       this.ticket = new Ticket('', 0, '', '', '', '', null, null, '', null);
       const ticketRet: Ticket = responseApi.data;
       this.form.resetForm();
-      super.exibirMensagemDeSucesso(AbstractComponent.OPERACAO_REALIZADA_COM_SUCESSO);
+      this.exibirMensagemDeSucesso(AbstractComponent.OPERACAO_REALIZADA_COM_SUCESSO);
     }, error => {
       if (error['error']['errors'] === undefined) {
-        super.exibirMensagemDeErro(error['error']['message']);
+        this.exibirMensagemDeErro(error['error']['message']);
       } else {
-        super.exibirMensagemDeErro(error['error']['errors'][0]);
+        this.exibirMensagemDeErro(error['error']['errors'][0]);
       }
     });
   }
 
   arquivo(event): void {
     if (event.target.files[0].size > 2000000) {
-      super.exibirMensagemDeAlerta('Tamanho do arquivo não pode ser superior a 2Mb.');
+      this.exibirMensagemDeAlerta('Tamanho do arquivo não pode ser superior a 2Mb.');
     } else {
       this.ticket.imagem = '';
       const reader = new FileReader();

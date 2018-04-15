@@ -1,17 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { CompartilhadoService } from '../../../services/compartilhado.service';
+import { AbstractComponent } from '../abstract/abstract.component';
 
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html'
 })
-export class MenuComponent implements OnInit {
+export class MenuComponent extends AbstractComponent implements OnInit {
 
-  constructor(
-    private compartilhado: CompartilhadoService
-  ) {
-    this.compartilhado = CompartilhadoService.getInstance();
-   }
+  constructor() {
+    super(CompartilhadoService.getInstance());
+  }
 
   ngOnInit() {
   }

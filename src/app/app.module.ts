@@ -22,6 +22,7 @@ import { AppComponent } from './app.component';
 import { AuthGuard } from './components/comum/security/auth.guard';
 import { routes } from './app.routes';
 import { TicketPesquisarComponent } from './components/interno/ticket/ticket-pesquisar/ticket-pesquisar.component';
+import { TicketDetalharComponent } from './components/interno/ticket/ticket-detalhar/ticket-detalhar.component';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import { TicketPesquisarComponent } from './components/interno/ticket/ticket-pes
     AbstractComponent,
     UsuarioPesquisarComponent,
     TicketCadastrarComponent,
-    TicketPesquisarComponent
+    TicketPesquisarComponent,
+    TicketDetalharComponent
   ],
   imports: [
     BrowserModule,

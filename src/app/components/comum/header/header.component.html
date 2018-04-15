@@ -11,9 +11,20 @@
       <span class="sr-only">Toggle navigation</span>
     </a>
     <div class="navbar-custom-menu">
-      <p style="color:white"> usuario@usuario.com - Nome Usuario |
-        <button>Teste</button>
-      </p>
+      <ul class="nav navbar-nav">
+        <li class="dropdown user user-menu">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            <span class="hidden-xs">{{ compartilhado.usuario.email }}</span>
+          </a>
+          <ul class="dropdown-menu">
+            <li class="user-footer">
+              <div class="pull-right">
+                <a href="#" class="btn btn-default btn-flat" (click)="logout()" >Sign out</a>
+              </div>
+            </li>
+          </ul>
+        </li>
+      </ul>
     </div>
   </nav>
 </header>

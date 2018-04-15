@@ -18,13 +18,11 @@ export class UsuarioPesquisarComponent extends AbstractComponent implements OnIn
   private _filtro: BaseFilter<Usuario>;
 
   constructor(
-    private compartilhado: CompartilhadoService,
     private usuarioService: UsuarioService,
     private dialogService: DialogService,
     private router: Router
   ) {
-    super();
-    this.compartilhado = CompartilhadoService.getInstance();
+    super(CompartilhadoService.getInstance());
   }
 
   ngOnInit() {
@@ -44,7 +42,7 @@ export class UsuarioPesquisarComponent extends AbstractComponent implements OnIn
     this.router.navigate(['/usuario/cadastrar', id]);
   }
 
-  excluir(id: string) {
+  apagar(id: string) {
     this.dialogService.confirm('Você confirma a exclusão deste registro?')
       .then((canDelete: boolean) => {
         if (canDelete) {

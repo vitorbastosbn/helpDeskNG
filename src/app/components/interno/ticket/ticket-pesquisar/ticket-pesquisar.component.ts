@@ -20,13 +20,11 @@ export class TicketPesquisarComponent extends AbstractComponent implements OnIni
   ticket = new Ticket('', 0, '', '', '', '', null, null, '', null);
 
   constructor(
-    private compartilhado: CompartilhadoService,
     private ticketService: TicketService,
     private dialogService: DialogService,
     private router: Router
   ) {
-    super();
-    this.compartilhado = CompartilhadoService.getInstance();
+    super(CompartilhadoService.getInstance());
   }
 
   ngOnInit() {
@@ -38,7 +36,7 @@ export class TicketPesquisarComponent extends AbstractComponent implements OnIni
       this.filtro.registros = responseApi['data']['content'];
       this.filtro.paginas = new Array(responseApi['data']['totalPages']);
     }, error => {
-      super.exibirMensagemDeErro(error['error']['errors'][0]);
+      this.exibirMensagemDeErro(error['error']['errors'][0]);
     });
   }
 
@@ -51,7 +49,7 @@ export class TicketPesquisarComponent extends AbstractComponent implements OnIni
         this.filtro.registros = responseApi['data']['content'];
         this.filtro.paginas = new Array(responseApi['data']['totalPages']);
       }, error => {
-        super.exibirMensagemDeErro(AbstractComponent.NENHUM_REGISTRO_ENCONTRADO);
+        this.exibirMensagemDeErro(AbstractComponent.NENHUM_REGISTRO_ENCONTRADO);
       });
   }
 
@@ -63,7 +61,7 @@ export class TicketPesquisarComponent extends AbstractComponent implements OnIni
             super.exibirMensagemDeSucesso(AbstractComponent.OPERACAO_REALIZADA_COM_SUCESSO);
             this.pesquisarTodos(this.filtro.pagina, this.filtro.registrosPorPagina);
           }, error => {
-            super.exibirMensagemDeErro(error['error']['errors'][0]);
+            this.exibirMensagemDeErro(error['error']['errors'][0]);
           });
         }
       });
