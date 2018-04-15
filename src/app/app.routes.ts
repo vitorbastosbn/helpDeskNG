@@ -12,6 +12,7 @@ import { TicketDetalharComponent } from './components/interno/ticket/ticket-deta
 
 export const ROUTES: Routes = [
     { path : '', component: HomeComponent, canActivate: [AuthGuard]},
+    { path : '/', component: HomeComponent, canActivate: [AuthGuard]},
     { path : 'login', component: LoginComponent},
     { path : 'usuario/cadastrar', component: UsuarioCadastroComponent, canActivate: [AuthGuard]},
     { path : 'usuario/cadastrar/:id', component: UsuarioCadastroComponent, canActivate: [AuthGuard]},
