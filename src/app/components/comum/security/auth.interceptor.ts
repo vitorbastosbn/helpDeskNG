@@ -25,7 +25,7 @@ export class AuthInterceptor implements HttpInterceptor {
             authResquest = req.clone({
                 setHeaders: {
                     'Authorization': localStorage.getItem('token') !== null ? localStorage.getItem('token').toString() : '',
-                    'Access-Control-Allow-Origin': '*'
+                    'Access-Control-Allow-Origin': 'https://helpdeskng.herokuapp.com'
                 }
             });
             return next.handle(authResquest);
