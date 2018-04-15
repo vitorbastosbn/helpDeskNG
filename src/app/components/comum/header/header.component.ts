@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 export class HeaderComponent extends AbstractComponent implements OnInit {
 
   constructor(
-    private compatilhado: CompartilhadoService,
+    public compatilhado: CompartilhadoService,
     private router: Router
   ) {
     super(CompartilhadoService.getInstance());
@@ -20,7 +20,7 @@ export class HeaderComponent extends AbstractComponent implements OnInit {
   ngOnInit() {
   }
 
-  private logout() {
+  public logout() {
     localStorage.clear();
     this.compatilhado.showTemplate.emit(false);
     this.router.navigate(['/login']);

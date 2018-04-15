@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-abstract',
-  template: '<ng-content></ng-content> {{title}}'
+  template: '<ng-content></ng-content>'
 })
 export class AbstractComponent {
 
@@ -14,7 +14,7 @@ export class AbstractComponent {
   classCss = {};
 
   constructor(
-    private compartilhado: CompartilhadoService
+    public compartilhado: CompartilhadoService
   ) {
     this.compartilhado = CompartilhadoService.getInstance();
 

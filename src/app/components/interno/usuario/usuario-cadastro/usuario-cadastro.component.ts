@@ -17,7 +17,7 @@ export class UsuarioCadastroComponent extends AbstractComponent implements OnIni
   @ViewChild('form')
   form: NgForm;
 
-  private usuario = new Usuario('', '', '', '');
+  public usuario = new Usuario('', '', '', '');
 
   constructor(
     private usuarioService: UsuarioService,

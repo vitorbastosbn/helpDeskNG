@@ -17,7 +17,7 @@ export class TicketPesquisarComponent extends AbstractComponent implements OnIni
 
   designadoParaMim = true;
   private _filtro: BaseFilter<Ticket>;
-  ticket = new Ticket('', 0, '', '', '', '', null, null, '', null);
+  ticket = new Ticket('', 0, '', '', '', '', null, null, '', '', null);
 
   constructor(
     private ticketService: TicketService,
@@ -70,7 +70,7 @@ export class TicketPesquisarComponent extends AbstractComponent implements OnIni
   limpar(): void {
     this.limparMensagens();
     this.designadoParaMim = false;
-    this.ticket = new Ticket('', 0, '', '', '', '', null, null, '', null);
+    this.ticket = new Ticket('', 0, '', '', '', '', null, null, '', '', null);
     this.pesquisarTodos(this.filtro.pagina, this.filtro.registrosPorPagina);
   }
 

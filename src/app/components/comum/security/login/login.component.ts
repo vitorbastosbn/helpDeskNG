@@ -13,7 +13,7 @@ import { AbstractComponent } from '../../abstract/abstract.component';
 })
 export class LoginComponent extends AbstractComponent implements OnInit {
 
-  private usuario = new Usuario('', '', '', '');
+  usuario = new Usuario('', '', '', '');
 
   constructor(
     private usuarioService: UsuarioService,

@@ -17,7 +17,7 @@ export class TicketCadastrarComponent extends AbstractComponent implements OnIni
   @ViewChild('form')
   form: NgForm;
 
-  ticket = new Ticket('', 0, '', '', '', '', null, null, '', null);
+  ticket = new Ticket('', 0, '', '', '', '', null, null, '', '', null);
 
   constructor(
     private ticketService: TicketService,
@@ -43,7 +43,7 @@ export class TicketCadastrarComponent extends AbstractComponent implements OnIni
 
   cadastrar() {
     this.ticketService.criarOuAtualizar(this.ticket).subscribe((responseApi: ResponseApi) => {
-      this.ticket = new Ticket('', 0, '', '', '', '', null, null, '', null);
+      this.ticket = new Ticket('', 0, '', '', '', '', null, null, '', '', null);
       const ticketRet: Ticket = responseApi.data;
       this.form.resetForm();
       this.exibirMensagemDeSucesso(AbstractComponent.OPERACAO_REALIZADA_COM_SUCESSO);

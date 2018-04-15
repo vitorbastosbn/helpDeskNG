@@ -14,7 +14,7 @@ import { Ticket } from './../../../../model/ticket.model';
 })
 export class TicketDetalharComponent extends AbstractComponent implements OnInit {
 
-  ticket = new Ticket('', 0, '', '', '', '', null, null, '', null);
+  ticket = new Ticket('', 0, '', '', '', '', null, null, '', '', null);
 
   constructor(
     private ticketService: TicketService,
