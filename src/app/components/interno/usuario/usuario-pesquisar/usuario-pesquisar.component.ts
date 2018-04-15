@@ -34,6 +34,7 @@ export class UsuarioPesquisarComponent extends AbstractComponent implements OnIn
       this.filtro.registros = responseApi['data']['content'];
       this.filtro.paginas = new Array(responseApi['data']['totalPages']);
     }, error => {
+      console.log(error);
       super.exibirMensagemDeErro(error['error']['errors'][0]);
     });
   }
