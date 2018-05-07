@@ -1,12 +1,13 @@
-import { ResponseApi } from './../../../../model/response-api';
-import { TicketService } from './../../../../services/ticket.service';
+import { StatusEnum } from './../../../../model/enums/statusEnum';
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { NgForm } from '@angular/forms';
 
-import { Ticket } from './../../../../model/ticket.model';
 import { CompartilhadoService } from '../../../../services/compartilhado.service';
-import { ActivatedRoute } from '@angular/router';
 import { AbstractComponent } from '../../../comum/abstract/abstract.component';
+import { TicketService } from './../../../../services/ticket.service';
+import { ResponseApi } from './../../../../model/comum/response-api';
+import { Ticket } from './../../../../model/entity/ticket.model';
 
 @Component({
   selector: 'app-ticket-cadastrar',
@@ -17,7 +18,7 @@ export class TicketCadastrarComponent extends AbstractComponent implements OnIni
   @ViewChild('form')
   form: NgForm;
 
-  ticket = new Ticket('', 0, '', '', '', '', null, null, '', '', null);
+  ticket = new Ticket();
 
   constructor(
     private ticketService: TicketService,
@@ -42,8 +43,9 @@ export class TicketCadastrarComponent extends AbstractComponent implements OnIni
   }
 
   cadastrar() {
+    this.ticket.status = StatusEnum.NOVO;
     this.ticketService.criarOuAtualizar(this.ticket).subscribe((responseApi: ResponseApi) => {
-      this.ticket = new Ticket('', 0, '', '', '', '', null, null, '', '', null);
+      this.ticket = new Ticket();
       const ticketRet: Ticket = responseApi.data;
       this.form.resetForm();
       this.exibirMensagemDeSucesso(AbstractComponent.OPERACAO_REALIZADA_COM_SUCESSO);

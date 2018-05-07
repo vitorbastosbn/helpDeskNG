@@ -5,8 +5,8 @@ import { NgForm } from '@angular/forms';
 import { CompartilhadoService } from '../../../../services/compartilhado.service';
 import { AbstractComponent } from '../../../comum/abstract/abstract.component';
 import { UsuarioService } from '../../../../services/usuario.service';
-import { ResponseApi } from './../../../../model/response-api';
-import { Usuario } from '../../../../model/usuario.model';
+import { ResponseApi } from './../../../../model/comum/response-api';
+import { Usuario } from '../../../../model/entity/usuario.model';
 
 @Component({
   selector: 'app-usuario-cadastro',
@@ -17,7 +17,7 @@ export class UsuarioCadastroComponent extends AbstractComponent implements OnIni
   @ViewChild('form')
   form: NgForm;
 
-  public usuario = new Usuario('', '', '', '');
+  public usuario = new Usuario();
 
   constructor(
     private usuarioService: UsuarioService,
@@ -45,7 +45,7 @@ export class UsuarioCadastroComponent extends AbstractComponent implements OnIni
 
   cadastrar() {
     this.usuarioService.criarOuAtualizar(this.usuario).subscribe((responseApi: ResponseApi) => {
-      this.usuario = new Usuario('', '', '', '');
+      this.usuario = new Usuario();
       const usuarioRet: Usuario = responseApi.data;
       this.form.resetForm();
       this.exibirMensagemDeSucesso(AbstractComponent.OPERACAO_REALIZADA_COM_SUCESSO);

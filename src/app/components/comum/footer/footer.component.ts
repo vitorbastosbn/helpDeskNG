@@ -1,6 +1,7 @@
+import { Component, OnInit } from '@angular/core';
+
 import { CompartilhadoService } from './../../../services/compartilhado.service';
 import { AbstractComponent } from './../abstract/abstract.component';
-import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-footer',

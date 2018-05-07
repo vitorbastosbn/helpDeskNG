@@ -1,5 +1,6 @@
-import { CompartilhadoService } from './../../../services/compartilhado.service';
 import { Component, OnInit } from '@angular/core';
+
+import { CompartilhadoService } from './../../../services/compartilhado.service';
 
 @Component({
   selector: 'app-abstract',
@@ -9,6 +10,7 @@ export class AbstractComponent {
 
   public static NENHUM_REGISTRO_ENCONTRADO = 'Nenhum registro encontrado.';
   public static OPERACAO_REALIZADA_COM_SUCESSO = 'Operação realizada com sucesso.';
+  private _isLoading: boolean;
 
   mensagem: string;
   classCss = {};
@@ -58,4 +60,14 @@ export class AbstractComponent {
     };
   }
 
+  public get isLoading() {
+    if (this._isLoading) {
+      this._isLoading = true;
+    }
+    return this._isLoading;
+  }
+
+  public set isLoading(isLoading: boolean) {
+    this._isLoading = isLoading;
+  }
 }

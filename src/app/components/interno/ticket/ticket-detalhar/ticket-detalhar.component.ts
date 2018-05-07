@@ -4,8 +4,8 @@ import { ActivatedRoute } from '@angular/router';
 import { CompartilhadoService } from './../../../../services/compartilhado.service';
 import { AbstractComponent } from './../../../comum/abstract/abstract.component';
 import { TicketService } from './../../../../services/ticket.service';
-import { ResponseApi } from './../../../../model/response-api';
-import { Ticket } from './../../../../model/ticket.model';
+import { ResponseApi } from './../../../../model/comum/response-api';
+import { Ticket } from './../../../../model/entity/ticket.model';
 
 
 @Component({
@@ -14,7 +14,7 @@ import { Ticket } from './../../../../model/ticket.model';
 })
 export class TicketDetalharComponent extends AbstractComponent implements OnInit {
 
-  ticket = new Ticket('', 0, '', '', '', '', null, null, '', '', null);
+  ticket = new Ticket();
 
   constructor(
     private ticketService: TicketService,

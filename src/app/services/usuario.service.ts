@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { HELP_DESK_API } from './helpdesk.api';
-import { Usuario } from '../model/usuario.model';
+import { Usuario } from '../model/entity/usuario.model';
 
 @Injectable()
 export class UsuarioService {
@@ -14,10 +14,10 @@ export class UsuarioService {
   }
 
   criarOuAtualizar(usuario: Usuario) {
-    if (usuario.id !== null && usuario.id !== '') {
+    if (usuario.id !== undefined && usuario.id !== '') {
       return this.http.put(`${HELP_DESK_API}/api/usuario`, usuario);
     } else {
-      usuario.id = null;
+      usuario.id = undefined;
       return this.http.post(`${HELP_DESK_API}/api/usuario`, usuario);
     }
   }

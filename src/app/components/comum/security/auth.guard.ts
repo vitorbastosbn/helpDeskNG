@@ -1,6 +1,7 @@
 import { CanActivate, Router, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
-import { Observable } from 'rxjs/Observable';
 import { Injectable } from '@angular/core';
+
+import { Observable } from 'rxjs/Observable';
 
 import { CompartilhadoService } from '../../../services/compartilhado.service';
 

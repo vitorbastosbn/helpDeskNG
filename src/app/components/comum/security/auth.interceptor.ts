@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
 import {
     HttpEvent,
     HttpInterceptor,
     HttpHandler,
     HttpRequest
 } from '@angular/common/http';
+
+import { Observable } from 'rxjs/Observable';
+
 import { CompartilhadoService } from '../../../services/compartilhado.service';
 
 @Injectable()

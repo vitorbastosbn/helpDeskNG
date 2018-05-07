@@ -1,7 +1,8 @@
-import { CompartilhadoService } from './../../../services/compartilhado.service';
-import { AbstractComponent } from './../abstract/abstract.component';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+
+import { CompartilhadoService } from './../../../services/compartilhado.service';
+import { AbstractComponent } from './../abstract/abstract.component';
 
 @Component({
   selector: 'app-header',

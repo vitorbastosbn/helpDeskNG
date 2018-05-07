@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { HELP_DESK_API } from './helpdesk.api';
-import { Ticket } from '../model/ticket.model';
+import { Ticket } from '../model/entity/ticket.model';
 
 @Injectable()
 export class TicketService {
@@ -33,7 +33,6 @@ export class TicketService {
   pesquisarPorParametros(pagina: number, registrosPorPagina: number, isUsuarioDesignado: boolean, ticket: Ticket) {
     ticket.protocolo = ticket.protocolo == null ? 0 : ticket.protocolo;
     ticket.titulo = ticket.titulo === '' ? 'vazio' : ticket.titulo;
-    ticket.status = ticket.status === '' ? 'vazio' : ticket.status;
     ticket.prioridade = ticket.prioridade === '' ? 'vazio' : ticket.prioridade;
 
     return this.http.get(`${HELP_DESK_API}/api/ticket/

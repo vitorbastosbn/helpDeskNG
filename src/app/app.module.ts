@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 
-
 import { UsuarioPesquisarComponent } from './components/interno/usuario/usuario-pesquisar/usuario-pesquisar.component';
 import { TicketCadastrarComponent } from './components/interno/ticket/ticket-cadastrar/ticket-cadastrar.component';
 import { UsuarioCadastroComponent } from './components/interno/usuario/usuario-cadastro/usuario-cadastro.component';
@@ -23,6 +22,7 @@ import { AuthGuard } from './components/comum/security/auth.guard';
 import { routes } from './app.routes';
 import { TicketPesquisarComponent } from './components/interno/ticket/ticket-pesquisar/ticket-pesquisar.component';
 import { TicketDetalharComponent } from './components/interno/ticket/ticket-detalhar/ticket-detalhar.component';
+import { LoadingModule } from 'ngx-loading';
 
 
 @NgModule({
@@ -44,7 +44,8 @@ import { TicketDetalharComponent } from './components/interno/ticket/ticket-deta
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    routes
+    routes,
+    LoadingModule
   ],
   providers: [
     UsuarioService,

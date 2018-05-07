@@ -1,5 +1,6 @@
 import { Injectable, EventEmitter } from '@angular/core';
-import { Usuario } from '../model/usuario.model';
+
+import { Usuario } from '../model/entity/usuario.model';
 
 @Injectable()
 export class CompartilhadoService {
@@ -35,7 +36,7 @@ export class CompartilhadoService {
    */
   public get usuario(): Usuario {
     if (this._usuario == null) {
-      this._usuario = new Usuario('', '', '', '');
+      this._usuario = new Usuario();
     }
     this._usuario.email = localStorage.getItem('usuario') !== null ? localStorage.getItem('usuario').toString() : '';
     this._usuario.perfil = localStorage.getItem('perfil') !== null ? localStorage.getItem('perfil').toString() : '';

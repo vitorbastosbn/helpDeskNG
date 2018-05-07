@@ -5,9 +5,9 @@ import { CompartilhadoService } from '../../../../services/compartilhado.service
 import { AbstractComponent } from '../../../comum/abstract/abstract.component';
 import { UsuarioService } from './../../../../services/usuario.service';
 import { DialogService } from '../../../../dialog.service';
-import { ResponseApi } from '../../../../model/response-api';
-import { BaseFilter } from '../../../../model/base-filter';
-import { Usuario } from '../../../../model/usuario.model';
+import { ResponseApi } from '../../../../model/comum/response-api';
+import { BaseFilter } from '../../../../model/comum/base-filter';
+import { Usuario } from '../../../../model/entity/usuario.model';
 
 @Component({
   selector: 'app-usuario-pesquisar',

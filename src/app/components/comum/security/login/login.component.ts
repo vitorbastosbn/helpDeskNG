@@ -1,11 +1,11 @@
-import { UsuarioAtual } from './../../../../model/usuarioAtual.model';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { CompartilhadoService } from '../../../../services/compartilhado.service';
-import { UsuarioService } from './../../../../services/usuario.service';
-import { Usuario } from '../../../../model/usuario.model';
 import { AbstractComponent } from '../../abstract/abstract.component';
+import { UsuarioService } from './../../../../services/usuario.service';
+import { UsuarioAtual } from './../../../../model/entity/usuarioAtual.model';
+import { Usuario } from '../../../../model/entity/usuario.model';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +13,7 @@ import { AbstractComponent } from '../../abstract/abstract.component';
 })
 export class LoginComponent extends AbstractComponent implements OnInit {
 
-  usuario = new Usuario('', '', '', '');
+  usuario = new Usuario();
 
   constructor(
     private usuarioService: UsuarioService,
@@ -48,7 +48,7 @@ export class LoginComponent extends AbstractComponent implements OnInit {
 
   cancelarLogin() {
     this.mensagem = null;
-    this.usuario = new Usuario('', '', '', '');
+    this.usuario = new Usuario();
     this.router.navigate(['/login']);
   }
 

@@ -1,13 +1,14 @@
-import { DialogService } from './../../../../dialog.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+
+import { DialogService } from './../../../../dialog.service';
 
 import { CompartilhadoService } from '../../../../services/compartilhado.service';
 import { AbstractComponent } from '../../../comum/abstract/abstract.component';
 import { TicketService } from './../../../../services/ticket.service';
-import { ResponseApi } from './../../../../model/response-api';
-import { BaseFilter } from '../../../../model/base-filter';
-import { Ticket } from './../../../../model/ticket.model';
+import { ResponseApi } from './../../../../model/comum/response-api';
+import { BaseFilter } from '../../../../model/comum/base-filter';
+import { Ticket } from './../../../../model/entity/ticket.model';
 
 @Component({
   selector: 'app-ticket-pesquisar',
@@ -17,7 +18,7 @@ export class TicketPesquisarComponent extends AbstractComponent implements OnIni
 
   designadoParaMim = true;
   private _filtro: BaseFilter<Ticket>;
-  ticket = new Ticket('', 0, '', '', '', '', null, null, '', '', null);
+  ticket = new Ticket();
 
   constructor(
     private ticketService: TicketService,
@@ -28,7 +29,9 @@ export class TicketPesquisarComponent extends AbstractComponent implements OnIni
   }
 
   ngOnInit() {
+    this.isLoading = true;
     this.pesquisarTodos(this.filtro.pagina, this.filtro.registrosPorPagina);
+    this.isLoading = false;
   }
 
   pesquisarTodos(pagina: number, registrosPorPagina: number) {
@@ -42,7 +45,6 @@ export class TicketPesquisarComponent extends AbstractComponent implements OnIni
 
   pesquisarPorFiltro(): void {
     this.filtro.pagina = 0;
-
     this.ticketService.pesquisarPorParametros(this.filtro.pagina, this.filtro.registrosPorPagina, this.designadoParaMim, this.ticket)
       .subscribe((responseApi: ResponseApi) => {
         this.ticket.titulo = this.ticket.titulo === 'vazio' ? '' : this.ticket.titulo;
@@ -70,7 +72,7 @@ export class TicketPesquisarComponent extends AbstractComponent implements OnIni
   limpar(): void {
     this.limparMensagens();
     this.designadoParaMim = false;
-    this.ticket = new Ticket('', 0, '', '', '', '', null, null, '', '', null);
+    this.ticket = new Ticket();
     this.pesquisarTodos(this.filtro.pagina, this.filtro.registrosPorPagina);
   }
 
