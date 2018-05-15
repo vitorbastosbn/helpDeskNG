@@ -22,8 +22,10 @@ export class UsuarioCadastroComponent extends AbstractComponent implements OnIni
   constructor(
     private usuarioService: UsuarioService,
     private route: ActivatedRoute,
+    private compartilhado: CompartilhadoService
   ) {
-    super(CompartilhadoService.getInstance());
+    super();
+    this.compartilhado = CompartilhadoService.getInstance();
   }
 
   ngOnInit() {

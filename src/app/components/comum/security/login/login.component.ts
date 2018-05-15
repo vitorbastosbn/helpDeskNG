@@ -20,7 +20,7 @@ export class LoginComponent extends AbstractComponent implements OnInit {
     private router: Router,
     private compatilhado: CompartilhadoService
   ) {
-    super(CompartilhadoService.getInstance());
+    super();
     this.compatilhado = CompartilhadoService.getInstance();
   }
 

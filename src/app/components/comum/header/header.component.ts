@@ -11,11 +11,11 @@ import { AbstractComponent } from './../abstract/abstract.component';
 export class HeaderComponent extends AbstractComponent implements OnInit {
 
   constructor(
-    public compatilhado: CompartilhadoService,
+    public compartilhado: CompartilhadoService,
     private router: Router
   ) {
-    super(CompartilhadoService.getInstance());
-    this.compatilhado = CompartilhadoService.getInstance();
+    super();
+    this.compartilhado = CompartilhadoService.getInstance();
   }
 
   ngOnInit() {
@@ -23,8 +23,8 @@ export class HeaderComponent extends AbstractComponent implements OnInit {
 
   public logout() {
     localStorage.clear();
-    this.compatilhado.showTemplate.emit(false);
     this.router.navigate(['/login']);
+    // this.compartilhado.showTemplate.emit(false);
   }
 
 }

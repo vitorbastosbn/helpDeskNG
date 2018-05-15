@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 
-import { CompartilhadoService } from './../../../services/compartilhado.service';
-
 @Component({
   selector: 'app-abstract',
   template: '<ng-content></ng-content>'
@@ -15,15 +13,7 @@ export class AbstractComponent {
   mensagem: string;
   classCss = {};
 
-  constructor(
-    public compartilhado: CompartilhadoService
-  ) {
-    this.compartilhado = CompartilhadoService.getInstance();
-
-    if (localStorage.getItem('token')) {
-      this.compartilhado.showTemplate.emit(true);
-    }
-  }
+  constructor(){}
 
   limparMensagens() {
     this.mensagem = null;

@@ -23,9 +23,11 @@ export class TicketPesquisarComponent extends AbstractComponent implements OnIni
   constructor(
     private ticketService: TicketService,
     private dialogService: DialogService,
-    private router: Router
+    private router: Router,
+    private compartilhado: CompartilhadoService
   ) {
-    super(CompartilhadoService.getInstance());
+    super();
+    this.compartilhado = CompartilhadoService.getInstance();
   }
 
   ngOnInit() {

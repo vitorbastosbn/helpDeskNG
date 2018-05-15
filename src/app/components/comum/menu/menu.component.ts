@@ -1,5 +1,5 @@
+import { CompartilhadoService } from './../../../services/compartilhado.service';
 import { Component, OnInit } from '@angular/core';
-import { CompartilhadoService } from '../../../services/compartilhado.service';
 import { AbstractComponent } from '../abstract/abstract.component';
 
 @Component({
@@ -8,11 +8,16 @@ import { AbstractComponent } from '../abstract/abstract.component';
 })
 export class MenuComponent extends AbstractComponent implements OnInit {
 
+  private compartilhado: CompartilhadoService;
+
   constructor() {
-    super(CompartilhadoService.getInstance());
+    super();
+    this.compartilhado = CompartilhadoService.getInstance();
   }
 
   ngOnInit() {
   }
+
+  
 
 }

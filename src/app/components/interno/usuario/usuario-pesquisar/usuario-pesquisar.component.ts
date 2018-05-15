@@ -20,9 +20,11 @@ export class UsuarioPesquisarComponent extends AbstractComponent implements OnIn
   constructor(
     private usuarioService: UsuarioService,
     private dialogService: DialogService,
-    private router: Router
+    private router: Router,
+    private compartilhado: CompartilhadoService
   ) {
-    super(CompartilhadoService.getInstance());
+    super();
+    this.compartilhado = CompartilhadoService.getInstance();
   }
 
   ngOnInit() {

@@ -22,9 +22,11 @@ export class TicketCadastrarComponent extends AbstractComponent implements OnIni
 
   constructor(
     private ticketService: TicketService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private compartilhado: CompartilhadoService
   ) {
-    super(CompartilhadoService.getInstance());
+    super();
+    this.compartilhado = CompartilhadoService.getInstance();
   }
 
   ngOnInit() {

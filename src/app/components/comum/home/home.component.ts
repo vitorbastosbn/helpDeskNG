@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { AbstractComponent } from './../abstract/abstract.component';
-import { CompartilhadoService } from '../../../services/compartilhado.service';
 
 @Component({
   selector: 'app-home',
@@ -10,10 +9,8 @@ import { CompartilhadoService } from '../../../services/compartilhado.service';
 })
 export class HomeComponent extends AbstractComponent implements OnInit {
 
-  constructor(
-    private router: Router
-  ) {
-    super(CompartilhadoService.getInstance());
+  constructor(private router: Router) {
+    super();
   }
 
   ngOnInit() {
