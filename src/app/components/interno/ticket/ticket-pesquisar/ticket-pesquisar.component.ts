@@ -24,7 +24,7 @@ export class TicketPesquisarComponent extends AbstractComponent implements OnIni
     private ticketService: TicketService,
     private dialogService: DialogService,
     private router: Router,
-    private compartilhado: CompartilhadoService
+    public compartilhado: CompartilhadoService
   ) {
     super();
     this.compartilhado = CompartilhadoService.getInstance();

@@ -19,7 +19,7 @@ export class TicketDetalharComponent extends AbstractComponent implements OnInit
   constructor(
     private ticketService: TicketService,
     private route: ActivatedRoute,
-    private compartilhado: CompartilhadoService
+    public compartilhado: CompartilhadoService
   ) {
     super();
     this.compartilhado = CompartilhadoService.getInstance();

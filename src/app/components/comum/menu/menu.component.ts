@@ -8,7 +8,7 @@ import { AbstractComponent } from '../abstract/abstract.component';
 })
 export class MenuComponent extends AbstractComponent implements OnInit {
 
-  private compartilhado: CompartilhadoService;
+  public compartilhado: CompartilhadoService;
 
   constructor() {
     super();
