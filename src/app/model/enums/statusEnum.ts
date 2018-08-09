@@ -1,8 +1,8 @@
 export enum StatusEnum {
-    NOVO,
-    DESIGNADO,
-    RESOLVIDO,
-    APROVADO,
-    REPROVADO,
-    FECHADO
+    NOVO = "NOVO",
+    DESIGNADO = "DESIGNADO",
+    RESOLVIDO = "RESOLVIDO",
+    APROVADO = "APROVADO",
+    REPROVADO = "REPROVADO",
+    FECHADO = "FECHADO"
 }
